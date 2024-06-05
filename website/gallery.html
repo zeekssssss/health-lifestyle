@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>JS Image Slide Show with MOO ICT</title>
+    <style>
+body{
+    background-image: linear-gradient(to right top, #42bb60, #b47132, #4e797c, #21d61b, #3030cc, #811616, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    height: 100%;
+}
+#container
+{
+    width: 700px;
+    border: 4px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 5%;
+    background-image: radial-gradient( circle 619.3px at 10% 20%,  rgba(166,223,75,1) 0%, rgba(255,217,57,1) 100.2% );
+}
+img
+{
+    width: auto;
+    max-width: 500px;
+    height: 600px;
+    background-color: rgb(163, 0, 0);
+    padding: 10px;
+    border-radius: 30px;
+}
+button
+{
+    width: 100px;
+    height: 60px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.play
+{
+    animation: fadein .4s ease-in;
+}
+    </style>
+    </head>
+    <body>
+        
+        <div id="container">
+            <h1>JS Image Slide Show with MOO ICT</h1>
+            <div id="image">
+                <img id="img" src="images/1.jpg" alt="">
+            </div>
+            <div id="controls">
+                <button onclick="GoBack()">Back</button>
+                <button onclick="GoNext()">Next</button>
+            </div>
+        </div>
+        <script>
+            var num = 1;
+            var element = document.getElementById("img");
+            function GoBack()
+            {
+                if(num > 1)
+                {
+                    num--;
+                }
+                else
+                {
+                    num = 6;
+                }
+                PlayAnimation();
+            }
+            function GoNext()
+            {
+                if(num < 6)
+                {
+                    num++;
+                }
+                else
+                {
+                    num = 1;
+                }
+                PlayAnimation();
+            }
+            function PlayAnimation()
+            {
+                element.src = "images/"+num+".jpg";
+                element.classList.remove("play"); // reset the animation
+                void element.offsetWidth; // trigger the reflow of img tag
+                element.classList.add("play");
+            }
+        </script>
+    </body>
